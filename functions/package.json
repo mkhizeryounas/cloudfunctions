@@ -8,17 +8,22 @@
     "shell": "firebase functions:shell",
     "start": "npm run shell",
     "deploy": "firebase deploy --only functions",
-    "logs": "firebase functions:log"
+    "logs": "firebase functions:log",
+    "test": "NODE_PATH=. env-cmd -f .env mocha ./app/utils/tests/**/*.test.js ./app/controllers/**/test.js ./app/controllers/**/**/test.js --exit"
   },
   "engines": {
     "node": "12"
   },
   "main": "index.js",
   "dependencies": {
+    "chai": "^4.2.0",
+    "chai-as-promised": "^7.1.1",
     "firebase-admin": "^9.2.0",
-    "firebase-functions": "^3.11.0"
+    "firebase-functions": "^3.11.0",
+    "mocha": "^8.2.0"
   },
   "devDependencies": {
+    "env-cmd": "^10.1.0",
     "eslint": "^5.12.0",
     "eslint-plugin-promise": "^4.0.1",
     "firebase-functions-test": "^0.2.0"
