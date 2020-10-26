@@ -9,7 +9,7 @@
     "start": "npm run shell",
     "deploy": "firebase deploy --only functions",
     "logs": "firebase functions:log",
-    "test": "NODE_PATH=. env-cmd -f .env mocha ./app/utils/tests/**/*.test.js ./app/controllers/**/test.js ./app/controllers/**/**/test.js --exit"
+    "test": "NODE_PATH=. env-cmd -f .env mocha ./app/utils/tests/**/*.test.js ./app/controllers/tests/*.test.js --exit"
   },
   "engines": {
     "node": "12"
