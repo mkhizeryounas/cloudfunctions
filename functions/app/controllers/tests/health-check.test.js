@@ -2,11 +2,11 @@ const chai = require('chai');
 const { expect } = chai;
 chai.use(require('chai-as-promised'));
 
-const HealtCheckController = require('../health-check');
+const HealthCheckController = require('../health-check');
 
-describe('HealthCheck', () => {
+describe('Health Check', () => {
   it('should return a boolean', async () => {
-    const result = await HealtCheckController.run();
+    const result = await HealthCheckController.fetchSiteResponse();
     expect(typeof result).to.equal('boolean');
   });
 });

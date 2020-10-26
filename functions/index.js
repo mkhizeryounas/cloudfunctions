@@ -1,23 +1,13 @@
-const functions = require('firebase-functions');
-const admin = require('firebase-admin');
+const { pubsub, https } = require('firebase-functions');
+const { runAndUpdate } = require('./app/controllers/health-check');
 
-admin.initializeApp();
-const db = admin.firestore();
-
-exports.status = functions.https.onRequest(async (request, response) => {
-  let data = await admin.firestore().collection('utils').doc('flags').set({
-    underMaintenance: true,
-  });
-
-  functions.logger.info('Hello logs!', { structuredData: true });
-  response.json({
-    message: 'Hello from Firebase!',
-  });
+exports.status = https.onRequest(async (request, response) => {
+  let res = await runAndUpdate();
+  response.status(res.success === true ? 200 : 400).json(res);
 });
 
-exports.scheduledFunction = functions.pubsub
+exports.scheduledFunction = pubsub
   .schedule('every 5 minutes')
-  .onRun((context) => {
-    functions.logger.info('Hello logs!', { structuredData: true });
-    return null;
+  .onRun(async (context) => {
+    return await runAndUpdate();
   });
