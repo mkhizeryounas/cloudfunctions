@@ -5,8 +5,8 @@ chai.use(require('chai-as-promised'));
 const CommonUtil = require('../common');
 
 describe('Common utils', () => {
-  it('should return a timestamp as an int', async () => {
-    const result = await CommonUtil.timestamp();
+  it('should return a timestamp as an int', () => {
+    const result = CommonUtil.timestamp();
     expect(typeof result).to.equal('number');
   });
 });
