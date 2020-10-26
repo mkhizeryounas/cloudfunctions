@@ -1,7 +1,14 @@
 const functions = require('firebase-functions');
+const admin = require('firebase-admin');
 
-exports.status = functions.https.onRequest((request, response) => {
-  console.log('PROCESS', process.env.name);
+admin.initializeApp();
+const db = admin.firestore();
+
+exports.status = functions.https.onRequest(async (request, response) => {
+  admin.firestore().collection('utils').doc('flags').set({
+    underMaintenance: true,
+  });
+
   functions.logger.info('Hello logs!', { structuredData: true });
   response.json({
     message: 'Hello from Firebase!',
