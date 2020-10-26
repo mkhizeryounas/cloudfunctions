@@ -44,7 +44,6 @@ exports.runAndUpdate = async (admin) => {
     response['underMaintenance'] = res;
   } catch (err) {
     response['success'] = false;
-  } finally {
-    return response;
   }
+  return response;
 };
