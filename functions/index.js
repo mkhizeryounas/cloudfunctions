@@ -5,7 +5,7 @@ admin.initializeApp();
 const db = admin.firestore();
 
 exports.status = functions.https.onRequest(async (request, response) => {
-  admin.firestore().collection('utils').doc('flags').set({
+  let data = await admin.firestore().collection('utils').doc('flags').set({
     underMaintenance: true,
   });
 
