@@ -1,1 +1,1 @@
-# Cloud functions boilerplate.
+# CloudFunctions Boilerplate.
